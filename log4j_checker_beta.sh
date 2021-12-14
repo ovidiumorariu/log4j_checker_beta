@@ -13,6 +13,8 @@ OUTPUT="$(locate -e log4j|grep -v log4js|grep -v log4j_checker_beta)"
 if [ "$OUTPUT" ]; then
   echo -e ${RED}"[WARNING] maybe vulnerable, those files contain the name:"${ENDCOLOR}
   echo "$OUTPUT"
+else
+  echo -e ${GREEN}"[OK]"${ENDCOLOR}" No files containing log4j"
 fi;
 if [ "$(command -v yum)" ]; then
   echo -e ${YELLOW}"### check installed yum packages ..."${ENDCOLOR1}
@@ -20,6 +22,8 @@ if [ "$(command -v yum)" ]; then
   if [ "$OUTPUT" ]; then
     echo -e ${RED}"[WARNING] maybe vulnerable, yum installed packages:"${ENDCOLOR}
     echo "$OUTPUT"
+  else
+    echo -e ${GREEN}"[OK]"${ENDCOLOR}" No yum packages found"
   fi;
 fi;
 if [ "$(command -v dpkg)" ]; then
@@ -28,6 +32,8 @@ if [ "$(command -v dpkg)" ]; then
   if [ "$OUTPUT" ]; then
     echo -e ${RED}"[WARNING] maybe vulnerable, dpkg installed packages:"${ENDCOLOR}
     echo "$OUTPUT"
+  else
+    echo -e ${GREEN}"[OK]"${ENDCOLOR}" No dpkg packages found"
   fi;
 fi;
 echo -e ${YELLOW}"### check if Java is installed ..."${ENDCOLOR1}
